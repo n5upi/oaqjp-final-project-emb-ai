@@ -38,4 +38,3 @@ def emotion_detector(text_to_analyse):  # Define a function named sentiment_anal
     }
 
     return output
-
