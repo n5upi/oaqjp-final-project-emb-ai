@@ -11,6 +11,8 @@ def emot_detector():
     # Pass the text to the emotion_detector function and store the response
     response = emotion_detector(text_to_analyze)
 
+    blank = response['dominant_emotion']
+
     # Extract the label and score from the response
     anger = "'anger': {}, ".format(response['anger'])
     disgust = "'disgust': {}, ".format(response['disgust'])
@@ -19,8 +21,10 @@ def emot_detector():
     sadness = " and 'sadness': {}. ".format(response['sadness'])
     dominant = "The dominant emotion is {}.".format(response['dominant_emotion'])
 
-    # Return a formatted string
-    return "For the given statement, the system response is " + anger + disgust + fear + joy + sadness + dominant
+    if blank is "None":
+        return "Invalid text! Please try again!"
+    else:
+        return "For the given statement, the system response is " + anger + disgust + fear + joy + sadness + dominant
 
 @app.route("/")
 def render_index_page():
